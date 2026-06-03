@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Holiday Shortlist · July 2026</title>
+<style>
+  :root{
+    --ink:#1d2330; --muted:#5d6675; --line:#e6e8ee; --bg:#f5f6f9; --card:#ffffff;
+    --teal:#0f6e56; --teal-bg:#e1f5ee; --amber:#854f0b; --amber-bg:#faeeda;
+    --red:#a32d2d; --red-bg:#fcebeb; --blue:#185fa5; --blue-bg:#e6f1fb;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1040px; margin:0 auto; padding:0 20px 64px;}
+  header{background:var(--teal); color:#fff; padding:40px 0 34px; margin-bottom:32px;}
+  header .wrap{padding-bottom:0;}
+  header h1{margin:0 0 6px; font-size:30px; font-weight:600; letter-spacing:-.3px;}
+  header p{margin:0; opacity:.92; font-size:16px;}
+  .meta{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px;}
+  .meta span{background:rgba(255,255,255,.16); padding:5px 12px; border-radius:20px; font-size:13px;}
+  h2{font-size:21px; font-weight:600; margin:40px 0 14px; letter-spacing:-.2px;}
+  .lead{color:var(--muted); font-size:15.5px; max-width:780px;}
+  .stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:22px 0 8px;}
+  .stat{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px 18px;}
+  .stat .k{font-size:13px; color:var(--muted);}
+  .stat .v{font-size:22px; font-weight:600; margin-top:2px;}
+  table{width:100%; border-collapse:collapse; background:var(--card); border:1px solid var(--line);
+    border-radius:14px; overflow:hidden; font-size:14.5px; margin-top:8px;}
+  th,td{padding:11px 14px; text-align:center; border-bottom:1px solid var(--line); vertical-align:top;}
+  th{background:#fbfbfd; font-weight:600; font-size:13.5px;}
+  td:first-child,th:first-child{text-align:left; color:var(--ink); font-weight:600; font-size:13.5px;}
+  tbody tr:last-child td{border-bottom:none;}
+  .rec{color:var(--teal); font-weight:600;}
+  .tick,.cross,.partm{display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%; font-size:16px; font-weight:700; line-height:1;}
+  .tick{background:var(--teal-bg); color:var(--teal);}
+  .cross{background:var(--red-bg); color:var(--red);}
+  .partm{background:var(--amber-bg); color:var(--amber);}
+  .yes{color:var(--teal); font-weight:600;}
+  .no{color:var(--red); font-weight:600;}
+  .part{color:var(--amber); font-weight:600;}
+  .rsn{display:block; color:var(--muted); font-weight:400; font-size:12px; line-height:1.35; margin-top:5px;}
+  .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:18px; margin-top:8px;}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:22px 22px 20px;}
+  .card.feat{border:2px solid var(--teal);}
+  .card-img{width:100%; height:175px; object-fit:cover; border-radius:10px; margin-bottom:14px; display:block; background:var(--line);}
+  .card .badge{display:inline-block; background:var(--teal-bg); color:var(--teal);
+    font-size:12px; font-weight:600; padding:3px 11px; border-radius:8px; margin-bottom:10px;}
+  .card h3{margin:0; font-size:19px; font-weight:600;}
+  .card .sub{color:var(--muted); font-size:13.5px; margin:3px 0 0;}
+  .score{float:right; font-size:24px; font-weight:700; color:var(--ink);}
+  .score small{font-size:13px; color:var(--muted); font-weight:500;}
+  .row{display:flex; gap:10px; margin-top:14px; font-size:14px;}
+  .row .lab{width:84px; color:var(--muted); flex:none;}
+  .pro{color:var(--teal);} .con{color:var(--red);}
+  .pill{display:inline-block; font-size:12px; padding:3px 10px; border-radius:7px; margin:14px 6px 0 0;}
+  .pill.win{background:var(--teal-bg); color:var(--teal);}
+  .pill.warn{background:var(--amber-bg); color:var(--amber);}
+  .pill.out{background:var(--red-bg); color:var(--red);}
+  .deal{display:inline-block; margin-top:18px; background:var(--teal); color:#fff; text-decoration:none;
+    font-size:13.5px; font-weight:600; padding:9px 16px; border-radius:9px;}
+  .deal:hover{background:#0c5a47;}
+  .deal .src{font-weight:400; opacity:.8; font-size:12px;}
+  .inc{margin:16px 0 0; padding-top:13px; border-top:1px solid var(--line);}
+  .inc h5{margin:0 0 7px; font-size:12px; font-weight:600; color:var(--ink); letter-spacing:.3px; text-transform:uppercase;}
+  .inc ul{margin:0; padding-left:18px;}
+  .inc li{font-size:13px; color:var(--muted); margin:3px 0; line-height:1.4;}
+  .inc li.exc{color:var(--red);}
+  .verdict{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--teal);
+    border-radius:14px; padding:22px 24px; margin-top:14px;}
+  .verdict h3{margin:0 0 8px; font-size:18px;}
+  .two{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:14px;}
+  .two .opt{background:#fbfbfd; border:1px solid var(--line); border-radius:12px; padding:16px 18px;}
+  .two .opt h4{margin:0 0 4px; font-size:16px;}
+  .foot{color:var(--muted); font-size:12.5px; margin-top:36px; border-top:1px solid var(--line); padding-top:16px;}
+  .table-wrap{overflow-x:auto; -webkit-overflow-scrolling:touch; border-radius:14px;}
+  .scroll-hint{display:none; font-size:12px; color:var(--muted); margin:0 0 8px;}
+  img{max-width:100%;}
+  @media(max-width:620px){
+    .wrap{padding:0 14px 48px;}
+    header{padding:28px 0 24px;}
+    header h1{font-size:23px;}
+    header p{font-size:14px;}
+    .meta{gap:8px;} .meta span{font-size:12px; padding:4px 10px;}
+    h2{font-size:19px; margin:30px 0 12px;}
+    .lead{font-size:15px;}
+    .stats{gap:10px;} .stat{padding:13px 14px;} .stat .v{font-size:20px;}
+    .scroll-hint{display:block;}
+    table{min-width:520px; font-size:13px;}
+    th,td{padding:9px 10px;}
+    td:first-child,th:first-child{font-size:13px;}
+    .rsn{font-size:11.5px;}
+    .tick,.cross,.partm{width:22px; height:22px; font-size:14px;}
+    .two{grid-template-columns:1fr;}
+    .card{padding:18px 16px;} .card-img{height:160px;}
+    .score{float:none; display:block; margin-top:6px;}
+    .verdict{padding:18px 16px;}
+    .row .lab{width:74px;}
+    .deal{display:block; text-align:center;}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>All inclusive holiday shortlist</h1>
+    <p>2 adults · 7 nights · flying out between 7 and 14 July 2026 · from London Gatwick</p>
+    <div class="meta">
+      <span>5 star</span><span>Great food, ultra all inclusive</span>
+      <span>Adults focused</span><span>Transfer under 45 minutes</span><span>Budget under £4,500 all in</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <p class="lead">Live prices pulled from easyJet holidays (flights from Gatwick, hold bags, private transfers, ATOL) and Booking.com, including local tax. After applying the 45 minute transfer rule, Creta Royal drops out (an hour from Heraklion), leaving a clean two horse race between Mitsis Royal Mare and Ikaros Beach.</p>
+
+  <div class="stats">
+    <div class="stat"><div class="k">Best value, all in</div><div class="v">~£2,810</div></div>
+    <div class="stat"><div class="k">Shortest transfer</div><div class="v">23 min</div></div>
+    <div class="stat"><div class="k">Top rated in budget</div><div class="v">9.0</div></div>
+    <div class="stat"><div class="k">Flight time, direct</div><div class="v">~4h 15m</div></div>
+  </div>
+
+  <h2>Tick box comparison</h2>
+  <div style="display:flex; flex-wrap:wrap; gap:18px; font-size:13px; color:var(--muted); margin-bottom:12px;">
+    <span><span class="tick" style="width:20px; height:20px; font-size:13px;">&#10003;</span> yes</span>
+    <span><span class="cross" style="width:20px; height:20px; font-size:13px;">&#10007;</span> no</span>
+    <span><span class="partm" style="width:20px; height:20px; font-size:13px;">~</span> partial</span>
+  </div>
+  <p class="scroll-hint">Swipe the table sideways to see all columns →</p>
+  <div class="table-wrap">
+  <table>
+    <thead>
+      <tr><th>Key point</th><th class="rec">Mitsis Royal Mare</th><th>Ikaros Beach</th><th>Creta Royal</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Under £4,500 all in</td>
+        <td><span class="tick">&#10003;</span><span class="rsn">£2,650 all in, the cheapest</span></td>
+        <td><span class="tick">&#10003;</span><span class="rsn">£3,325 + tax, ~£3,417 (AI board, +£280pp upgrade)</span></td>
+        <td><span class="tick">&#10003;</span><span class="rsn">~£2,860 all in</span></td>
+      </tr>
+      <tr>
+        <td>Transfer under 45 min</td>
+        <td><span class="tick">&#10003;</span><span class="rsn">25 min from Heraklion</span></td>
+        <td><span class="tick">&#10003;</span><span class="rsn">23 min from Heraklion, shortest</span></td>
+        <td><span class="cross">&#10007;</span><span class="rsn">60 min from Heraklion (70 km)</span></td>
+      </tr>
+      <tr>
+        <td>Adults only (no kids)</td>
+        <td><span class="cross">&#10007;</span><span class="rsn">families allowed, but mature, calm crowd</span></td>
+        <td><span class="tick">&#10003;</span><span class="rsn">strictly adults only</span></td>
+        <td><span class="tick">&#10003;</span><span class="rsn">strictly adults only</span></td>
+      </tr>
+      <tr>
+        <td>À la carte included, no surcharge</td>
+        <td><span class="partm">~</span><span class="rsn">AI Premium, but one evening per venue per week</span></td>
+        <td><span class="partm">~</span><span class="rsn">just one à la carte evening for 7+ nights, Veranda and Ayeri excluded</span></td>
+        <td><span class="tick">&#10003;</span><span class="rsn">included, confirm allowance with hotel</span></td>
+      </tr>
+      <tr>
+        <td>Sushi</td>
+        <td><span class="tick">&#10003;</span><span class="rsn">Pan-Asian à la carte, one evening per week</span></td>
+        <td><span class="tick">&#10003;</span><span class="rsn">Asian restaurant, sushi style</span></td>
+        <td><span class="cross">&#10007;</span><span class="rsn">no sushi venue</span></td>
+      </tr>
+      <tr>
+        <td>Steakhouse</td>
+        <td><span class="partm">~</span><span class="rsn">grill, not a dedicated steakhouse</span></td>
+        <td><span class="cross">&#10007;</span><span class="rsn">no steakhouse</span></td>
+        <td><span class="cross">&#10007;</span><span class="rsn">no steakhouse</span></td>
+      </tr>
+      <tr>
+        <td>Authentic Italian</td>
+        <td><span class="tick">&#10003;</span><span class="rsn">Italian à la carte, lunch only, once per week</span></td>
+        <td><span class="cross">&#10007;</span><span class="rsn">Med grill, not Italian</span></td>
+        <td><span class="partm">~</span><span class="rsn">Mediterranean and Greek leaning</span></td>
+      </tr>
+      <tr>
+        <td>Guest score 9.0+</td>
+        <td><span class="cross">&#10007;</span><span class="rsn">8.4, strong on TripAdvisor (5,301)</span></td>
+        <td><span class="tick">&#10003;</span><span class="rsn">9.0 on Booking.com</span></td>
+        <td><span class="tick">&#10003;</span><span class="rsn">9.1, highest here</span></td>
+      </tr>
+      <tr>
+        <td>Overall rating</td>
+        <td><span class="rec">8.5 / 10</span><span class="rsn">best value, best food of the under budget options</span></td>
+        <td><span>8.5 / 10</span><span class="rsn">adults only, very good food</span></td>
+        <td><span>6.0 / 10</span><span class="rsn">ruled out by the transfer time</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div style="background:var(--amber-bg); border:1px solid #f0d9a8; border-radius:12px; padding:14px 18px; margin-top:22px; font-size:14px; color:#5e3c08;">
+    <strong>Good to know</strong><br>
+    <span style="color:#6b4a13;">Flights (Heraklion route): take the daytime pairing, Gatwick 07:15 to Heraklion 13:15 and back Heraklion 13:55 to Gatwick 16:15, for about £79pp more. The cheapest package instead uses night flights that land around 00:40 and return overnight. À la carte: the included à la carte dining is rationed at both. Mitsis gives three à la carte dinners a week (one in each dinner venue) plus an Italian lunch; Ikaros includes just one à la carte evening for a 7 night stay. Most other meals are the buffet.</span>
+  </div>
+
+  <h2>Resort by resort</h2>
+  <div class="cards">
+
+    <div class="card feat">
+      <img class="card-img" src="https://media.mitsishotels.com/uploads/2026/03/2_7.jpg" alt="Mitsis Royal Mare, Crete" loading="lazy" onerror="this.style.display='none'">
+      <span class="badge">Recommended · best value</span>
+      <span class="score">8.5<small> / 10</small></span>
+      <h3>Mitsis Royal Mare</h3>
+      <p class="sub">Crete · Anissaras · all inclusive premium</p>
+      <div class="row"><span class="lab">Food</span><span><span class="pro">+</span> three dinner à la carte (Mediterranean, Pan-Asian/sushi, South American), one evening per week in each, plus Italian at lunch once a week. <span class="con">−</span> that is the full à la carte allowance, so three à la carte dinners across the week and buffet otherwise; buffet can run lukewarm.</span></div>
+      <div class="row"><span class="lab">Transfer</span><span>Heraklion to Anissaras, about 25 minutes.</span></div>
+      <div class="row"><span class="lab">Price</span><span>~£2,810 all in with the recommended daytime flights (~£2,650 on the cheapest night flights). The lowest here.</span></div>
+      <div class="row"><span class="lab">Flights</span><span><b>Recommended daytime flights:</b> Gatwick 07:15 to Heraklion <b>13:15</b>, back Heraklion <b>13:55</b> to Gatwick 16:15, for about £79pp more (£158 for two), taking the all in to <b>~£2,810</b>. The cheapest package uses night flights (lands 00:40, returns 01:40).</span></div>
+      <div class="row"><span class="lab">Crowd</span><span>Not strictly adults only, but mature, calm and quiet at night.</span></div>
+      <div class="inc"><h5>What's included · All Inclusive Premium</h5><ul>
+        <li>Buffet breakfast, lunch and dinner in the main restaurant</li>
+        <li>One evening per week in each of the Mediterranean, Pan-Asian and South American à la carte (reservations required)</li>
+        <li>One Italian à la carte lunch per week, plus one brunch per week at Pacifico</li>
+        <li>Creperie (crepes, waffles, ice cream) and a late night snack buffet</li>
+        <li>Selected local and some premium drinks, minibar refreshed every other day, welcome drink, pool and beach waiter service</li>
+      </ul></div>
+      <span class="pill win">Cheapest</span><span class="pill win">Best Italian and sushi under budget</span>
+      <div><a class="deal" href="https://www.easyjet.com/en/holidays/greece/crete/hersonissos/mitsis-royal-mare?ibf=true&to=17-07-2026&from=10-07-2026&dst=GRCR0026&sAccId=GRCR0026&geog=&flex=3&org=LGW&aa=1&rooms=2&outId=E4e620bf093bc3f96602e7aea603366f7&inId=Ec96d8e8ada0816f1ab4d6eee872d7cb5&accId=GRCR0026&packId=2295513938/2/3109/7&boardType=AS&offerRooms=2/B03&transfer=GEMT54605KSS&dtransfer=GEMT54605KSS&isExt=0&lateRoomCheckout=0&theme=beach" target="_blank" rel="noopener">View this exact deal <span class="src">· easyJet holidays</span></a></div>
+    </div>
+
+    <div class="card">
+      <img class="card-img" src="https://www.ikarosvillage.gr/wp-content/uploads/2024/11/ikaros_beach_resort_spa_adults_only_crete-31.jpg" alt="Ikaros Beach Luxury Resort, Crete" loading="lazy" onerror="this.style.display='none'">
+      <span class="score">8.5<small> / 10</small></span>
+      <h3>Ikaros Beach</h3>
+      <p class="sub">Crete · Malia · all inclusive · adults only</p>
+      <div class="row"><span class="lab">Food</span><span><span class="pro">+</span> very good buffet plus Asian (sushi style), Med and Greek à la carte. <span class="con">−</span> only one à la carte evening is included for a 7 night stay (Veranda and Ayeri excluded), and no steakhouse or authentic Italian.</span></div>
+      <div class="row"><span class="lab">Transfer</span><span>Heraklion to Malia, about 23 minutes. The shortest.</span></div>
+      <div class="row"><span class="lab">Price</span><span>~£3,417 all in, or ~£3,575 with the recommended daytime flights.</span></div>
+      <div class="row"><span class="lab">Flights</span><span><b>Recommended daytime flights:</b> Gatwick 07:15 to Heraklion <b>13:15</b>, back Heraklion <b>13:55</b> to Gatwick 16:15, for about £79pp more (£158 for two), taking the all in to <b>~£3,575</b>. The cheapest package uses night flights (lands 00:40, returns 01:40).</span></div>
+      <div class="row"><span class="lab">Crowd</span><span>Adults only, guaranteed child free.</span></div>
+      <div class="inc"><h5>What's included · All Inclusive (optional +£280pp upgrade)</h5><ul>
+        <li>Buffet breakfast, lunch and dinner in the main restaurant</li>
+        <li>One à la carte evening meal for stays of 7+ nights (Veranda and Ayeri excluded)</li>
+        <li>Snacks at certain times; selected hot, soft and alcoholic drinks</li>
+        <li>Fitness room, tennis, indoor pool, jacuzzi, steam bath and sauna</li>
+        <li>Daily evening entertainment</li>
+      </ul></div>
+      <span class="pill win">Adults only</span><span class="pill win">Shortest transfer</span>
+      <div><a class="deal" href="https://www.easyjet.com/en/holidays/greece/crete/malia/ikaros-beach-luxury-resort-spa?ibf=true&to=17-07-2026&from=10-07-2026&dst=X9080541&sAccId=X9080541&geog=&flex=3&org=LGW&aa=1&rooms=2&outId=E4e620bf093bc3f96602e7aea603366f7&inId=Ec96d8e8ada0816f1ab4d6eee872d7cb5&accId=X9080541&packId=2324789004/2/3109/7&boardType=AI&offerRooms=2/DBT.GV!NOR.FIT%20--2026&transfer=GEMT54577KSS&dtransfer=GEMT54577KSS&isExt=1&lateRoomCheckout=0&theme=beach" target="_blank" rel="noopener">View this exact deal <span class="src">· easyJet holidays, All Inclusive</span></a></div>
+    </div>
+
+    <div class="card">
+      <img class="card-img" src="https://www.cretaroyal.gr/media/wrice2qq/creta-royal-star-exteriors-21.jpg" alt="Creta Royal, Crete" loading="lazy" onerror="this.style.display='none'">
+      <span class="score">6.0<small> / 10</small></span>
+      <h3>Creta Royal</h3>
+      <p class="sub">Crete · Skaleta · all inclusive · adults only</p>
+      <div class="row"><span class="lab">Food</span><span><span class="pro">+</span> included à la carte, calm and intimate, highest score. <span class="con">−</span> fewer restaurants, no real sushi or steakhouse.</span></div>
+      <div class="row"><span class="lab">Transfer</span><span>Heraklion to Skaleta, about 60 minutes.</span></div>
+      <div class="row"><span class="lab">Price</span><span>~£2,860 all in.</span></div>
+      <div class="row"><span class="lab">Flights</span><span>Direct to Heraklion, ~4h 15m. Scheduled daytime options on Jet2 and BA; charter packages follow similar late night times.</span></div>
+      <div class="row"><span class="lab">Crowd</span><span>Adults only, calm.</span></div>
+      <div class="inc"><h5>Board note</h5><ul>
+        <li>Sold via Booking.com rather than easyJet, so the exact à la carte allowance should be confirmed with the hotel</li>
+        <li class="exc">Ruled out here by the 60 minute transfer from Heraklion</li>
+      </ul></div>
+      <span class="pill warn">Highest score 9.1</span><span class="pill out">Fails 45 min transfer</span>
+      <div><a class="deal" href="https://www.booking.com/hotel/gr/creta-royal.html?checkin=2026-07-10&checkout=2026-07-17&group_adults=2&no_rooms=1&selected_currency=GBP" target="_blank" rel="noopener">View hotel and rate <span class="src">· Booking.com</span></a></div>
+    </div>
+
+  </div>
+
+  <h2>The verdict</h2>
+  <div class="verdict">
+    <h3>A clean two horse race</h3>
+    <p>With your 45 minute transfer rule applied, Creta Royal drops out (a full hour from Heraklion). That leaves two strong options, both rated 8.5 out of 10.</p>
+    <div class="two">
+      <div class="opt">
+        <h4>Mitsis Royal Mare · ~£2,650 (~£2,810 with daytime flights)</h4>
+        <p style="margin:0; color:var(--muted); font-size:14px;">Best value and the best Italian and sushi within budget. Mature, calm crowd, but not strictly adults only.</p>
+      </div>
+      <div class="opt">
+        <h4>Ikaros Beach · ~£3,417 (~£3,575 with daytime flights)</h4>
+        <p style="margin:0; color:var(--muted); font-size:14px;">Guaranteed adults only and child free, very good food, shortest transfer, for roughly £700 to £850 more.</p>
+      </div>
+    </div>
+    <p style="margin:14px 0 0; font-size:14px; color:var(--muted);"><strong style="color:var(--ink);">Also considered near Heraklion:</strong> Mitsis Selection Laguna (Anissaras, the sister resort, about £3,261 all in, scores 9.0, same 25 minute transfer) is a livelier family resort with a waterpark and a nightly kids' mini-disco, and its board includes only one à la carte booking a week, so it is busier with children and less generous on à la carte than Royal Mare. Mitsis Selection Rinela (Kokkini Hani) is the group's big aquapark resort and the most family focused option of all, and is sold out for this week (around £4,400 on nearby dates). Nana Princess scores a remarkable 9.9 but is about £7,000+ for the room alone. Abaton Island is cheaper (about £2,450 room only) but scores 8.8 and is only part adults only. None beats the two above for a calm, adults focused, foodie stay under budget. The other Mitsis Selection hotels (Blue Domes, Alila) are on Kos and Rhodes, not Crete.</p>
+  </div>
+
+  <h2>Before you book</h2>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; margin-top:8px;">
+    <div style="background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px;"><p style="margin:0 0 5px; font-weight:600; font-size:15px;">Room type</p><p style="margin:0; color:var(--muted); font-size:14px;">Prices are the lead in garden view rooms. Sea view or bungalow upgrades add roughly £56 to £171pp, and Ikaros has swim up options. There is plenty of headroom at Mitsis for a sea view.</p></div>
+    <div style="background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px;"><p style="margin:0 0 5px; font-weight:600; font-size:15px;">Drinks</p><p style="margin:0; color:var(--muted); font-size:14px;">Neither is premium spirits all day. Mitsis is "selected local and some premium brands, at certain times"; Ikaros is "selected hot, soft and alcoholic". If you enjoy good wine and cocktails, confirm the brands and serving hours.</p></div>
+    <div style="background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px;"><p style="margin:0 0 5px; font-weight:600; font-size:15px;">Location and vibe</p><p style="margin:0; color:var(--muted); font-size:14px;">Mitsis at Anissaras is the calmer setting. Ikaros sits on a private beach but is at Malia, Crete's party capital, so the town strip is loud. Both are away from the strip, but worth knowing.</p></div>
+    <div style="background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px;"><p style="margin:0 0 5px; font-weight:600; font-size:15px;">Kids in July</p><p style="margin:0; color:var(--muted); font-size:14px;">Mitsis is not strictly adults only and July is school holidays, so expect some families, though a mature, quiet crowd. Ikaros is guaranteed adults only.</p></div>
+    <div style="background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px;"><p style="margin:0 0 5px; font-weight:600; font-size:15px;">Extra costs to budget for</p><p style="margin:0; color:var(--muted); font-size:14px;">Spa treatments, any à la carte beyond the included allowance, motorised watersports, excursions and tips sit on top. Your budget headroom comfortably covers these.</p></div>
+    <div style="background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px;"><p style="margin:0 0 5px; font-weight:600; font-size:15px;">Entry admin (Greece)</p><p style="margin:0; color:var(--muted); font-size:14px;">The EU's biometric Entry/Exit System went live on 10 April 2026, so expect fingerprint and photo checks at the border; allow extra time. ETIAS (the €20 authorisation) is not required yet, expected late 2026 at the earliest. Each passport must be issued within the last 10 years and valid for at least 3 months after you return. Arrange travel insurance and a free GHIC card.</p></div>
+    <div style="background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px;"><p style="margin:0 0 5px; font-weight:600; font-size:15px;">Booking mechanics</p><p style="margin:0; color:var(--muted); font-size:14px;">easyJet holds with a £60pp deposit and prices move daily (discount codes come and go), so the figures here are a live snapshot. Seat selection on the daytime flights is a paid extra.</p></div>
+  </div>
+
+  <p class="foot">Prices are live snapshots and move daily, so confirm at the point of booking. The "view this exact deal" links open the specific priced easyJet package (Mitsis on All Inclusive Premium, Ikaros on All Inclusive); easyJet offers can expire, so if a link shows no availability, re-search the hotel for the same dates. Flight times shown are from the live package; both routes are direct with multiple daily departures. Transfer times are typical private transfer durations and vary with traffic.</p>
+
+</div>
+</body>
+</html>
