@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nürburgring Road Trip — July 2026</title>
+<style>
+  :root{
+    --ink:#1a1d23; --muted:#5b636f; --line:#e6e9ee;
+    --green:#e2001a; --green-dk:#a50d18; --red:#e2001a; --gold:#e8b21a;
+    --bg:#f4f4f4; --card:#ffffff; --soft:#fceced; --zebra:#fafafa;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:"Segoe UI",Helvetica,Arial,sans-serif; font-size:16px; line-height:1.62; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:920px; margin:0 auto; padding:0 22px 72px}
+
+  .hero{background:linear-gradient(135deg,#b3131f 0%,#e2001a 55%,#7d0d16 100%); color:#fff; padding:46px 22px 44px; position:relative; overflow:hidden;}
+  .hero-inner{max-width:920px; margin:0 auto; position:relative; z-index:1}
+  .hero .logo{width:108px; height:auto; margin:0 0 20px; display:block}
+  .kicker{letter-spacing:.22em; text-transform:uppercase; font-size:12px; opacity:.9; margin:0 0 12px}
+  .hero h1{font-size:44px; line-height:1.05; margin:0 0 16px; font-weight:800}
+  .hero .dates{display:inline-block; background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.3); padding:8px 16px; border-radius:999px; font-weight:600; font-size:15px}
+  .hero p.sub{margin:18px 0 0; max-width:620px; opacity:.92; font-size:16px}
+
+  .facts{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin:-30px auto 0; max-width:920px; padding:0 22px; position:relative; z-index:2}
+  .fact{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px 18px; box-shadow:0 8px 24px rgba(20,30,20,.07)}
+  .fact .l{font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin:0 0 5px}
+  .fact .v{font-size:15px; font-weight:700; margin:0; line-height:1.35}
+
+  h2{font-size:28px; margin:60px 0 16px; font-weight:800; padding-bottom:12px; border-bottom:2px solid var(--line);}
+  h2 .bar{display:inline-block; width:36px; height:6px; background:var(--red); border-radius:3px; vertical-align:middle; margin-right:12px}
+  h3{font-size:19px; margin:26px 0 10px}
+  .lead{color:var(--muted); margin:0 0 22px; font-size:15.5px; max-width:680px}
+
+  table{width:100%; border-collapse:separate; border-spacing:0; background:var(--card); border:1px solid var(--line); border-radius:14px; overflow:hidden; margin:6px 0}
+  th,td{padding:14px 16px; text-align:left; font-size:14.5px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{background:var(--green-dk); color:#fff; font-size:12px; letter-spacing:.05em; text-transform:uppercase}
+  table tr:nth-child(even) td{background:var(--zebra)}
+  tr:last-child td{border-bottom:none}
+  .pick td{background:#fff6dd !important}
+  .total td{font-weight:800; background:var(--soft) !important; font-size:15.5px}
+  .tag{display:inline-block; font-size:11px; font-weight:700; padding:3px 9px; border-radius:999px; background:#fcdcde; color:var(--green-dk)}
+
+  .day{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:0; margin:18px 0 0; overflow:hidden; box-shadow:0 4px 16px rgba(20,30,20,.05)}
+  .day .head{display:flex; gap:18px; align-items:center; padding:18px 22px; background:linear-gradient(90deg,#e2001a 0%,#a50d18 100%); color:#fff}
+  .day .head .d{font-size:34px; font-weight:800; line-height:1; min-width:34px}
+  .day .head .meta .t{font-size:19px; font-weight:700}
+  .day .head .meta .s{font-size:12.5px; opacity:.92; margin-top:2px}
+  .day .body{padding:6px 22px 18px}
+
+  .tl{margin:4px 0; padding:0; list-style:none}
+  .tl li{display:flex; gap:16px; padding:12px 2px; border-bottom:1px dashed var(--line); margin:0}
+  .tl li:last-child{border-bottom:none}
+  .tl .tm{flex:0 0 74px; font-weight:800; color:var(--green); font-size:15px; font-variant-numeric:tabular-nums}
+  .tl .ax{flex:1; font-size:14.5px; color:#333a45; line-height:1.55}
+  .tl .ax b{color:var(--ink)}
+  .laps{display:inline-block; font-size:12px; font-weight:700; color:#fff; background:var(--red); padding:3px 10px; border-radius:999px}
+  .tzn{font-size:12px; color:var(--muted); font-style:italic; padding:8px 2px 0 90px}
+
+  .eatlabel{font-weight:800; font-size:13px; color:var(--green-dk); letter-spacing:.05em; text-transform:uppercase; margin:18px 0 10px}
+  .eatlabel span{color:var(--muted); font-weight:600; text-transform:none; letter-spacing:0}
+  .cards{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+  .c2{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px 18px; display:flex; flex-direction:column}
+  .c2 h4{margin:0 0 6px; font-size:16px}
+  .chip{display:inline-block; font-size:10.5px; font-weight:700; letter-spacing:.02em; color:var(--green-dk); background:#fcdcde; padding:3px 9px; border-radius:999px; margin:0 0 8px}
+  .c2 p{margin:0 0 10px; font-size:13.5px; color:var(--muted); line-height:1.5}
+  .c2 .links{margin-top:auto; display:flex; gap:8px; flex-wrap:wrap}
+  .price{font-weight:800; color:var(--green-dk)}
+  .star{color:#b8860b; font-weight:700}
+  .btn{display:inline-block; font-size:13px; font-weight:700; text-decoration:none; color:#fff; background:var(--green); padding:7px 13px; border-radius:9px}
+  .btn.alt{background:#7f8893}
+  .btn.gold{background:var(--gold); color:#3a2f00}
+  a{color:var(--green-dk)}
+  .note{background:var(--soft); border-left:5px solid var(--green); padding:14px 18px; border-radius:0 12px 12px 0; font-size:14.5px; line-height:1.6; margin:16px 0}
+  .note.warn{background:#fff6dd; border-left-color:var(--gold)}
+  ul{padding-left:22px}
+  ul li{margin:7px 0}
+  footer{margin-top:52px; padding-top:20px; border-top:1px solid var(--line); font-size:12.5px; color:var(--muted)}
+
+  @media(max-width:640px){.facts{grid-template-columns:1fr 1fr} .cards{grid-template-columns:1fr} .hero h1{font-size:32px} .tl .tm{flex-basis:58px} .wrap{padding:0 16px 56px} h2{font-size:24px; margin:44px 0 14px}}
+  @media print{body{background:#fff}.fact,.day,.c2,table{box-shadow:none}.hero{-webkit-print-color-adjust:exact; print-color-adjust:exact}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 102" role="img" aria-label="Nürburgring"><path fill="#fff" fill-rule="evenodd" d="M35.327,58.667h3.621l2.4-9.312h2.231c0.871,0,1.221.651,0.985,1.566l-2,7.747h3.62l2.178-8.438c0.52-2.017-.43-3.826-3.309-3.826H38.492L35.327,58.667h0Zm123.006,4.7H152.8l0.794-3.073,4.97-.012a1.531,1.531,0,0,0,1.451-.924l0.165-.689h-2.913c-2.879,0-3.829-1.81-3.309-3.826l1.056-4.089c1.093-4.233,3.849-4.349,4.742-4.349H167l-3.142,12.243c-0.863,3.364-2.233,4.719-5.525,4.719h0Zm0.3-12.6-0.874,3.386c-0.235.916,0.114,1.566,0.985,1.566h2.194l1.664-6.493h-2.217a2.087,2.087,0,0,0-1.752,1.541h0Zm-44.111,12.6H109l0.794-3.073,4.97-.012a1.53,1.53,0,0,0,1.451-.924l0.165-.689h-2.913c-2.878,0-3.828-1.81-3.308-3.826l1.056-4.089c1.092-4.233,3.848-4.349,4.742-4.349h7.24l-3.143,12.243c-0.863,3.364-2.233,4.719-5.525,4.719h0Zm0.3-12.6-0.874,3.386c-0.236.916,0.113,1.566,0.985,1.566h2.194l1.663-6.493h-2.216a2.085,2.085,0,0,0-1.752,1.541h0ZM76.98,41.547h3.674L79.411,46.4h2.913c2.879,0,3.829,1.809,3.309,3.826l-1.056,4.089c-1.093,4.235-3.848,4.348-4.742,4.348h-7.24l4.387-17.12h0Zm3.978,12.761,0.874-3.387c0.236-.915-0.113-1.566-0.985-1.566H78.654L76.99,55.849h2.217a2.087,2.087,0,0,0,1.752-1.542h0Zm42.28,4.36h3.629l1.842-7.276a2.2,2.2,0,0,1,2.26-2.036h1.372L133.09,46.4h-2.109a5.491,5.491,0,0,0-5.7,4.2l-2.042,8.065h0Zm-22.817,0h3.629l1.842-7.276a2.2,2.2,0,0,1,2.26-2.036h1.372l0.748-2.952h-2.109a5.49,5.49,0,0,0-5.7,4.2l-2.042,8.065h0Zm-36.825,0h3.629l1.842-7.276a2.2,2.2,0,0,1,2.26-2.036H72.7L73.447,46.4H71.339a5.49,5.49,0,0,0-5.7,4.2L63.6,58.667h0ZM100.335,46.4h-3.62l-2.4,9.312H92.082c-0.872,0-1.221-.65-0.985-1.566l2-7.746H89.475L87.3,54.841c-0.52,2.016.43,3.826,3.309,3.826h6.564L100.335,46.4h0Zm35.532,12.264L139.038,46.4h-3.62l-3.149,12.264h3.6ZM63.366,46.4h-3.62l-2.4,9.312H55.112c-0.872,0-1.221-.65-0.985-1.566l2-7.746h-3.62l-2.177,8.438c-0.52,2.016.43,3.826,3.309,3.826H60.2L63.366,46.4h0Zm75.476-4.856a2.549,2.549,0,0,0-2.421,1.5l-0.492,1.909h3.62l0.878-3.405-1.585,0h0Zm-76.347,0a2.548,2.548,0,0,0-2.42,1.5l-0.493,1.909H63.2l0.878-3.405-1.585,0h0Zm-5.792,0a2.549,2.549,0,0,0-2.42,1.5L53.79,44.953h3.62l0.878-3.405-1.586,0h0Zm82.456,17.121h3.62l2.4-9.312h2.231c0.872,0,1.222.651,0.985,1.566l-2,7.747h3.621l2.177-8.438c0.52-2.017-.429-3.826-3.309-3.826h-6.564l-3.165,12.264h0ZM23.754,76.257H27.6a0.635,0.635,0,0,1,.688.687v1.407H33.38l14.286-14.3H53.8l-17.874,17.9a1.978,1.978,0,0,1-1.5.646H24.084a1.411,1.411,0,0,1-1.54-1.377V77.137a1,1,0,0,1,1.21-.88h0ZM9.839,90.156V79.811a1.987,1.987,0,0,1,.56-1.37l7.717-7.6a1.818,1.818,0,0,1,1.245-.561l2.178,0.061-4.668,4.426a1.984,1.984,0,0,0-.436,1.433V86.638L9.777,93.459c-0.481.493-.39,1.121,0.311,1.121h5.788a2.712,2.712,0,0,0,2.3-1,1.733,1.733,0,0,1,0,2.057l-4.606,4.423a3.688,3.688,0,0,1-2.489.936H2.246c-1.3,0-1.659-1.441-.746-2.368l8.34-8.476h0ZM26.921,68.526H28.87a1.922,1.922,0,0,0,1.333-.411l3.589-3.491a0.957,0.957,0,0,0-.718-1.644H22.921l-8.614-8.626a2.247,2.247,0,0,1-.615-1.539V39.977a1.324,1.324,0,0,0-.308-0.924L10.41,36.075a1.384,1.384,0,0,1,0-2.054l12-11.912a2.24,2.24,0,0,0,.616-1.541V16.563a2.79,2.79,0,0,1,.82-2.464l6.871-6.88c0.613-.615.8-0.542,1.439,0l3.176,2.669h5.333A1.828,1.828,0,0,0,42,9.374L43.843,7.32a1.832,1.832,0,0,1,1.333-.513h6.358a1.9,1.9,0,0,1,2.154,2.156v3.185l7.384,7.187H71.738a1.991,1.991,0,0,1,1.333.617l3.59,3.594a1.119,1.119,0,0,0,1.641,0l7.9-7.8a1.541,1.541,0,0,1,2.359,0l4,4a1.768,1.768,0,0,1,.411,1.233v4.827a0.95,0.95,0,0,1-1.149,1.13H89.173a1.049,1.049,0,0,0-1.128,1.129v4.313l-6.2,6.214h5.077a2.093,2.093,0,0,0,1.436-.564L94.3,32.07a2.685,2.685,0,0,0,.922-1.747V25.481c0-1.032.334-1.272,1.111-1.272H98.4a1.514,1.514,0,0,0,1.677-1.425V18.923a2.052,2.052,0,0,0-.754-1.332L91.839,10.3a2.245,2.245,0,0,0-3.282,0l-7.487,7.5c-0.915.915-1.421,0.8-2.368,0l-2.555-2.158a1.731,1.731,0,0,0-1.026-.513H62.508L56.239,9.012a1.463,1.463,0,0,1-.5-0.973V2.787A1.627,1.627,0,0,0,53.928,1H44.458a3.081,3.081,0,0,0-1.846,1.085l-3.9,3.6H33.69l-4.1-3.8a1.251,1.251,0,0,0-1.744,0l-7.589,7.5a3.854,3.854,0,0,0-1.026,2.67v4.994L5.795,30.632c-1.2,1.218-1.331,2.281-.079,3.493l2.3,2.222V52.2a3.927,3.927,0,0,0,.857,2.772l9.469,9.385a2.619,2.619,0,0,0,1.784.79l8.745-.007a0.617,0.617,0,0,1,.41,1.129l-2.359,2.259h0Z"/></svg>
+    <p class="kicker">Road Trip Itinerary · BMW M2</p>
+    <h1>Nürburgring Road Trip</h1>
+    <span class="dates">Wednesday 8 to Monday 13 July 2026</span>
+    <p class="sub">Crowthorne to the Nordschleife via Brussels, Monschau and Spa Francorchamps, on the LeShuttle, with two full track days over the Truck Grand Prix weekend.</p>
+  </div>
+</header>
+
+<div class="facts">
+  <div class="fact"><p class="l">Crossing</p><p class="v">LeShuttle, £270 return</p></div>
+  <div class="fact"><p class="l">Nights</p><p class="v">Brussels · Roannay · Adenau x3</p></div>
+  <div class="fact"><p class="l">Base</p><p class="v">Race House Studio, Breidscheid</p></div>
+  <div class="fact"><p class="l">Best laps</p><p class="v">Sat 11 &amp; Sun 12, full days</p></div>
+</div>
+
+<div class="wrap">
+
+  <h2><span class="bar"></span>Best times to travel</h2>
+  <p class="lead">Crossings chosen to balance the day's plan against the live fare. The BMW M2 prices as a Standard car, so the return total is the £270 confirmed on the booking engine. Each leg is priced on its own and they add up.</p>
+  <table>
+    <tr><th>Leg</th><th>Recommended crossing</th><th>Why</th><th>Fare</th></tr>
+    <tr class="pick"><td><strong>Out · Wed 8 Jul</strong></td><td>Folkestone <strong>14:16</strong> → Calais 15:51</td><td>Cheapest daytime slot that still lands you in Brussels for dinner around 18:00. Leave Crowthorne about 10:30.</td><td class="price">£130</td></tr>
+    <tr class="pick"><td><strong>Back · Mon 13 Jul</strong></td><td>Calais <strong>16:24</strong> → Folkestone 15:59</td><td>A relaxed start: leave Adenau about 09:30, long lunch in Ghent, home by roughly 18:00. The fare is the same £140 from 14:24 right up to 19:24, so shift it to suit.</td><td class="price">£140</td></tr>
+    <tr class="total"><td colspan="3">Standard return, BMW M2 (confirmed live)</td><td>£270</td></tr>
+  </table>
+  <div class="note"><a href="https://www.leshuttle.com/uk-en/">Book on LeShuttle</a> — enter Folkestone to Calais, out 8 Jul, back 13 Jul, then pick the times above. As a 6 day trip it does not qualify for the Short Stay Saver, so £270 is the realistic figure. The M2 crosses as a normal car, no surcharge, and is fine on the ramps.</div>
+
+  <h2><span class="bar"></span>Where to stay, with booking links</h2>
+  <h3>Brussels · Wednesday 8 July (parking sorted)</h3>
+  <p class="lead">Live room prices for 8 July, two adults, with the real parking setup for each. Ordered easiest parking first.</p>
+  <table>
+    <tr><th>Hotel</th><th>Score</th><th>Room / night</th><th>Parking</th><th></th></tr>
+    <tr class="pick"><td><strong>ibis off Grand'Place</strong> <span class="tag">Pick</span><br><span style="color:var(--muted);font-size:12px">By the Grand Place</span></td><td><span class="star">8.5</span> · 3★</td><td class="price">€135.60</td><td>About <b>€18/day</b>. Public car park <b>directly under the hotel</b> (0 m).</td><td><a class="btn" href="https://www.booking.com/hotel/be/ibisgrandplace.html?checkin=2026-07-08&checkout=2026-07-09&group_adults=2">Book</a></td></tr>
+    <tr><td><strong>Bedford Hotel</strong> <span class="tag">Cheapest parking</span><br><span style="color:var(--muted);font-size:12px">Brussels Centre, ~7 min walk to Grand Place</span></td><td><span class="star">8.4</span> · 3★</td><td class="price">€113.01</td><td><b>€13/day</b>. Own 200 space garage <b>on site</b> (0 m).</td><td><a class="btn" href="https://www.booking.com/hotel/be/bedford.html?checkin=2026-07-08&checkout=2026-07-09&group_adults=2">Book</a></td></tr>
+    <tr><td><strong>The Hoxton</strong> <span class="tag">Upgrade</span><br><span style="color:var(--muted);font-size:12px">Botanique / Saint-Josse</span></td><td><span class="star">9.0</span> · 4★</td><td class="price">€171.60</td><td>About <b>€35/day</b> (confirm). Indigo car park <b>next door</b>, Rue du Chemin de Fer 1.</td><td><a class="btn" href="https://www.booking.com/hotel/be/the-hoxton-brussels.html?checkin=2026-07-08&checkout=2026-07-09&group_adults=2">Book</a></td></tr>
+  </table>
+  <div class="note">All three have parking you can find on a map. The <strong>ibis</strong> has the Grand Place garage right under it (about €18/day, 24/7, ideal for unloading the M2), the <strong>Bedford</strong> has its own garage at just €13/day. A fourth option, 9Hotel Chelton, was dropped as its parking could not be reliably confirmed.</div>
+
+  <h3>Francorchamps · Thursday 9 July</h3>
+  <div class="note"><strong>Le Roannay</strong>, 800 m from the Spa circuit. Best price on 9 July (live): <strong>€218</strong> Standard King, breakfast and free parking included (flexible rate €242).<br>
+  <a class="btn" href="https://ibe.smarthotel.nl/?id=13df709d-d7a2-483e-8447-5df1ed35ea02">Book room direct</a>
+  <a class="btn alt" href="https://www.booking.com/hotel/be/hostellerieleroannay.html">Booking.com</a></div>
+
+  <h3>Adenau · Friday to Monday (preliminary, not booked yet)</h3>
+  <div class="note">Race House Studio Nürburgring Nordschleifenblick, Breidscheid. 3 nights at £165.73 = <strong>£497.19</strong>. <b>This is the preferred choice but is not booked yet</b>, so reserve to confirm and message the host early to lock the garage for the Truck Grand Prix weekend.<br>
+  <a class="btn" href="https://www.airbnb.co.uk/rooms/1480966245238566951?check_in=2026-07-10&check_out=2026-07-13&adults=2">Open and book the Airbnb</a></div>
+
+  <h2><span class="bar"></span>The track week</h2>
+  <p class="lead">Touristenfahrten on the Nordschleife. The track is open every day of your window, the weekend is the prize. Laps are about €30 to €35 each, paid on the cashless ring card or the Nürburgring app, you cannot pre book.</p>
+  <table>
+    <tr><th>Day</th><th>Date</th><th>Open laps</th><th>Notes</th></tr>
+    <tr><td>Fri</td><td>10 Jul</td><td>17:00 to 19:30</td><td>Arrival evening, first laps. Truck GP begins</td></tr>
+    <tr class="pick"><td>Sat</td><td>11 Jul</td><td><strong>08:00 to 19:00</strong></td><td>Full day, Truck Grand Prix weekend</td></tr>
+    <tr class="pick"><td>Sun</td><td>12 Jul</td><td><strong>08:00 to 19:00</strong></td><td>Full day, your last laps</td></tr>
+  </table>
+
+  <h2><span class="bar"></span>Day by day</h2>
+
+  <!-- DAY 1 -->
+  <div class="day">
+    <div class="head"><div class="d">1</div><div class="meta"><div class="t">Wednesday 8 July — Crowthorne to Brussels</div><div class="s">Drive · Eurotunnel · Brussels night</div></div></div>
+    <div class="body">
+      <ul class="tl">
+        <li><div class="tm">10:30</div><div class="ax"><b>Depart Crowthorne</b> for the Folkestone terminal, about 1h50 away.</div></li>
+        <li><div class="tm">12:20</div><div class="ax"><b>Arrive Folkestone</b> and check in, about 45 min before departure.</div></li>
+        <li><div class="tm">14:16</div><div class="ax"><b>LeShuttle to Calais</b>, 35 minute crossing. <span class="laps">£130</span></div></li>
+        <li><div class="tm">15:51</div><div class="ax"><b>Arrive Calais</b>, then about 2h05 on to Brussels.</div></li>
+        <li><div class="tm">18:00</div><div class="ax"><b>Brussels</b>: check in to the ibis off Grand'Place and park up.</div></li>
+        <li><div class="tm">19:30</div><div class="ax"><b>Dinner</b> in the centre, options below.</div></li>
+      </ul>
+      <div class="tzn">Clocks go forward 1 hour at Calais. Times after the crossing are local.</div>
+    </div>
+  </div>
+  <p class="eatlabel">Where to eat <span>· Brussels dinner</span></p>
+  <div class="cards">
+    <div class="c2"><h4>Restaurant Vincent</h4><span class="chip">À la carte · Belgian &amp; French</span><p>Just off the Grand Place. A 1905 rotisserie, famous for flambéed steaks and Dover sole carved at your table.</p><div class="links"><a class="btn" href="https://restaurantvincent.be/en">Website &amp; menu</a></div></div>
+    <div class="c2"><h4>Le Plattesteen</h4><span class="chip">Brasserie · Belgian</span><p>Centre, by the Bourse. A 1936 brasserie, hearty and good value, mussels and stews.</p><div class="links"><a class="btn alt" href="https://restaurantguru.com/Le-Plattesteen-Brussels-2">Menu &amp; info</a></div></div>
+    <div class="c2"><h4>Belga Queen</h4><span class="chip">Brasserie &amp; seafood</span><p>Centre, near De Brouckère. Seafood bar and brasserie classics in a grand 18th century bank hall.</p><div class="links"><a class="btn" href="https://www.belgaqueenbrussels.be/">Website &amp; menu</a></div></div>
+    <div class="c2"><h4>La Paix</h4><span class="chip">Two Michelin stars · tasting</span><p>Anderlecht, a short drive west. Chef David Martin, bold tasting menus. Booking essential, the splurge option.</p><div class="links"><a class="btn" href="https://lapaix.eu/?lang=en">Website &amp; menu</a></div></div>
+  </div>
+
+  <!-- DAY 2 -->
+  <div class="day">
+    <div class="head"><div class="d">2</div><div class="meta"><div class="t">Thursday 9 July — Brussels to Le Roannay</div><div class="s">Brunch · Spa Francorchamps · Roannay dinner</div></div></div>
+    <div class="body">
+      <ul class="tl">
+        <li><div class="tm">09:30</div><div class="ax"><b>Brunch in Brussels</b>: Peck 47 or Lloyd near the Grand Place, or Frank over in Ixelles.</div></li>
+        <li><div class="tm">11:00</div><div class="ax"><b>Depart for Francorchamps</b>, about 1h30 (130 km).</div></li>
+        <li><div class="tm">12:30</div><div class="ax"><b>Arrive Le Roannay</b>, check in, walk round the Spa circuit.</div></li>
+        <li><div class="tm">15:00</div><div class="ax"><b>Free afternoon</b>: the wellness area, or explore Spa and the Hautes Fagnes.</div></li>
+        <li><div class="tm">18:30</div><div class="ax"><b>Dinner</b> at Le Roannay, then overnight. Pod below.</div></li>
+      </ul>
+    </div>
+  </div>
+  <p class="eatlabel">Where to eat <span>· Roannay dinner</span></p>
+  <div class="cards">
+    <div class="c2"><h4>Le Lounge, Le Roannay</h4><span class="chip">Brasserie · European</span><p>The hotel's relaxed brasserie, open lunch and dinner. There is also a one Michelin star gastronomic restaurant next door if you fancy the full experience.</p><div class="links"><a class="btn" href="https://roannay.be/en/brasserie-en/">Brasserie menu</a></div></div>
+  </div>
+
+  <!-- DAY 3 -->
+  <div class="day">
+    <div class="head"><div class="d">3</div><div class="meta"><div class="t">Friday 10 July — to Nürburg, first laps</div><div class="s">Monschau lunch · Adenau · evening track · Ventisette</div></div></div>
+    <div class="body">
+      <ul class="tl">
+        <li><div class="tm">10:00</div><div class="ax"><b>Depart Francorchamps</b> for Monschau, about 40 min.</div></li>
+        <li><div class="tm">10:45</div><div class="ax"><b>Monschau</b>: lunch and a wander round the half timbered old town (Eifelstübchen or Alte Herrlichkeit).</div></li>
+        <li><div class="tm">13:30</div><div class="ax"><b>Depart for Breidscheid</b>, about 50 min.</div></li>
+        <li><div class="tm">15:00</div><div class="ax"><b>Check in</b> to the Race House Studio, request the garage.</div></li>
+        <li><div class="tm">17:00</div><div class="ax"><b>First laps</b>, Touristenfahrten on your doorstep. <span class="laps">17:00 to 19:30</span></div></li>
+        <li><div class="tm">19:45</div><div class="ax"><b>Dinner</b> at Ventisette, pod below.</div></li>
+      </ul>
+    </div>
+  </div>
+  <p class="eatlabel">Where to eat <span>· Friday dinner</span></p>
+  <div class="cards">
+    <div class="c2"><h4>Trattoria 27 Ventisette</h4><span class="chip">Italian · pizza &amp; pasta</span><p>By the Breidscheid bridge, Adenau's highest rated. Pizza, pasta and a famous tiramisu. Card accepted now, just walk in.</p><div class="links"><a class="btn alt" href="https://www.tripadvisor.co.uk/Restaurant_Review-g315836-d10662000-Reviews-Trattoria_Ventisette-Adenau_Rhineland_Palatinate.html">Reviews &amp; info</a></div></div>
+  </div>
+
+  <!-- DAY 4 -->
+  <div class="day">
+    <div class="head"><div class="d">4</div><div class="meta"><div class="t">Saturday 11 July — full track day</div><div class="s">Open laps all day · Truck GP · dinner near the ring</div></div></div>
+    <div class="body">
+      <ul class="tl">
+        <li><div class="tm">08:00</div><div class="ax"><b>Track opens</b>, full day of Touristenfahrten. <span class="laps">08:00 to 19:00</span></div></li>
+        <li><div class="tm">12:30</div><div class="ax"><b>Break</b>: dip into the ADAC Truck Grand Prix festival on the GP circuit.</div></li>
+        <li><div class="tm">19:00</div><div class="ax"><b>Track closes.</b></div></li>
+        <li><div class="tm">19:45</div><div class="ax"><b>Dinner</b> near the ring, or a short scenic drive. Pods below.</div></li>
+      </ul>
+    </div>
+  </div>
+  <p class="eatlabel">Where to eat <span>· by the ring (Sunday can be quiet, so book ahead and check hours)</span></p>
+  <div class="cards">
+    <div class="c2"><h4>Pistenklause</h4><span class="chip">Steakhouse · stone grill</span><p>Nürburg, at Hotel an der Nordschleife. The motorsport institution, steaks cooked on a hot stone, walls of racing memorabilia.</p><div class="links"><a class="btn" href="https://www.restaurant-pistenklause.com/">Website &amp; menu</a></div></div>
+    <div class="c2"><h4>Pizzeria Pinocchio</h4><span class="chip">Italian · pizza &amp; pasta</span><p>Adenau, on Hauptstraße. Famously huge pizzas at a fair price, a popular easy option.</p><div class="links"><a class="btn" href="https://pizzeria-adenau.de/">Website &amp; menu</a></div></div>
+    <div class="c2"><h4>Eifelstube</h4><span class="chip">Regional German &amp; Mediterranean</span><p>Rodder, near Adenau. Fresh regional cooking, much made in house. Open Thursday to Sunday, a safe weekend bet.</p><div class="links"><a class="btn" href="https://www.eifelstube.com/restaurant/">Website &amp; menu</a></div></div>
+    <div class="c2"><h4>Agnesenhof</h4><span class="chip">Regional · DIY stone steak</span><p>Barweiler, a rustic farmhouse hotel with do it yourself stone steak and motorsport memorabilia.</p><div class="links"><a class="btn" href="https://www.agnesen-hof.de/en/our-restaurant">Website &amp; menu</a></div></div>
+  </div>
+  <p class="eatlabel">Where to eat <span>· worth the drive, about 50 min, dinner on the Mosel in Cochem</span></p>
+  <div class="cards">
+    <div class="c2"><h4>Das Meyers, Cochem</h4><span class="chip">Modern regional</span><p>In the old town within Hotel Cochemer Jung, cosy indoors and a terrace, in a fairy-tale riverside town.</p><div class="links"><a class="btn" href="https://www.das-meyers.de/">Website &amp; menu</a></div></div>
+    <div class="c2"><h4>Hotel am Hafen, Cochem</h4><span class="chip">Moselle specialties · terrace</span><p>A riverside terrace right on the Mosel with castle views, hearty regional dishes and Moselle wines.</p><div class="links"><a class="btn" href="https://www.hotelamhafen.com/restaurant">Website &amp; menu</a></div></div>
+  </div>
+
+  <!-- DAY 5 -->
+  <div class="day">
+    <div class="head"><div class="d">5</div><div class="meta"><div class="t">Sunday 12 July — second full day, sushi</div><div class="s">Open laps all day · Koblenz sushi</div></div></div>
+    <div class="body">
+      <ul class="tl">
+        <li><div class="tm">08:00</div><div class="ax"><b>Track opens</b>, your last full day of laps. <span class="laps">08:00 to 19:00</span></div></li>
+        <li><div class="tm">13:00</div><div class="ax"><b>Break</b>: Truck GP racing, or rest up between sessions.</div></li>
+        <li><div class="tm">19:00</div><div class="ax"><b>Track closes</b>, drive to Koblenz, about 50 min.</div></li>
+        <li><div class="tm">20:00</div><div class="ax"><b>Dinner</b>: all you can eat sushi in Koblenz. Pod below.</div></li>
+      </ul>
+    </div>
+  </div>
+  <p class="eatlabel">Where to eat <span>· Koblenz sushi</span></p>
+  <div class="cards">
+    <div class="c2"><h4>Mikado Sushi &amp; Grill</h4><span class="chip">All you can eat sushi · iPad ordering</span><p>Koblenz, about 50 min from the ring. The most popular spot with locals, open daily until 23:00, so no rush after a full track day. Moved here from Saturday as it stays open latest.</p><div class="links"><a class="btn" href="https://mikado-sushigrill.de/">Website</a> <a class="btn alt" href="https://mikado-sushigrill.de/lunch-dinner/">Menu</a></div></div>
+  </div>
+  <div class="note">The running sushi alternative, Tan Phat, is closed on Sundays, so Mikado is the one for tonight.</div>
+
+  <!-- DAY 6 -->
+  <div class="day">
+    <div class="head"><div class="d">6</div><div class="meta"><div class="t">Monday 13 July — drive home</div><div class="s">Bakery breakfast · Ghent lunch · LeShuttle</div></div></div>
+    <div class="body">
+      <ul class="tl">
+        <li><div class="tm">08:30</div><div class="ax"><b>Breakfast</b> at Schillinger Bäckerei, Adenau. Pod below.</div></li>
+        <li><div class="tm">09:30</div><div class="ax"><b>Depart Adenau</b> for Ghent, about 3h30 (350 km).</div></li>
+        <li><div class="tm">13:00</div><div class="ax"><b>Ghent</b>: lunch and a stretch. Pods below.</div></li>
+        <li><div class="tm">14:45</div><div class="ax"><b>Depart for Calais</b>, about 1h15.</div></li>
+        <li><div class="tm">16:00</div><div class="ax"><b>Arrive Calais</b> terminal, check in.</div></li>
+        <li><div class="tm">16:24</div><div class="ax"><b>LeShuttle to Folkestone</b>, 35 min. <span class="laps">£140</span></div></li>
+        <li><div class="tm">15:59</div><div class="ax"><b>Arrive Folkestone</b> (clocks back 1 hour), then about 2h home.</div></li>
+        <li><div class="tm">18:10</div><div class="ax"><b>Home in Crowthorne.</b></div></li>
+      </ul>
+      <div class="tzn">Clocks go back 1 hour at Folkestone. A later crossing is the same £140 up to 19:24 if you want a longer Ghent afternoon.</div>
+    </div>
+  </div>
+  <p class="eatlabel">Where to eat <span>· breakfast then Ghent lunch</span></p>
+  <div class="cards">
+    <div class="c2"><h4>Schillinger Bäckerei</h4><span class="chip">Bakery &amp; café · breakfast</span><p>Adenau, Hauptstraße. Wood fired bakery and café, open from 06:00 Monday. Breakfast and pastries for the road.</p><div class="links"><a class="btn" href="http://www.schillingers.de/">Website</a> <a class="btn alt" href="http://www.schillingers.de/images/0/1160658/SpeisekarteAdenau.pdf">Menu (PDF)</a></div></div>
+    <div class="c2"><h4>Otomat, Ghent</h4><span class="chip">Wood fired pizza</span><p>Kleine Vismarkt, central Ghent. Lively, quick and good for a relaxed lunch stop.</p><div class="links"><a class="btn" href="https://otomat.be/en/locations/gent">Website &amp; menu</a></div></div>
+    <div class="c2"><h4>Roots, Ghent</h4><span class="chip">Michelin · seasonal bistronomy</span><p>Patershol district. Michelin level seasonal cooking without the fuss, if you want a smarter lunch.</p><div class="links"><a class="btn" href="https://www.rootsgent.be/">Website</a></div></div>
+    <div class="c2"><h4>'t Galgenhuis, Ghent</h4><span class="chip">Historic café · drinks &amp; light bites</span><p>Groentenmarkt. The smallest, oldest café in Ghent for a quick beer and a snack.</p><div class="links"><a class="btn alt" href="https://visit.gent.be/en/eat-drink/t-galgenhuisje">Info</a></div></div>
+  </div>
+
+  <h3 style="margin:34px 0 8px">Travel times at a glance</h3>
+  <table>
+    <tr><th>Day 1 leg</th><th>Time</th><th>Day 6 leg</th><th>Time</th></tr>
+    <tr><td>Crowthorne to Folkestone</td><td>~1h50</td><td>Adenau to Ghent (lunch)</td><td>~3h30</td></tr>
+    <tr><td>LeShuttle crossing</td><td>35 min</td><td>Ghent to Calais</td><td>~1h15</td></tr>
+    <tr><td>Calais to Brussels</td><td>~2h05</td><td>LeShuttle crossing</td><td>35 min</td></tr>
+    <tr><td>Arrive Brussels</td><td>~18:00</td><td>Folkestone to Crowthorne</td><td>~2h00</td></tr>
+  </table>
+
+  <h2><span class="bar"></span>Costs</h2>
+  <table>
+    <tr><th>Item</th><th>Detail</th><th>Estimate</th></tr>
+    <tr><td>LeShuttle return</td><td>Standard, BMW M2, your dates (checked live)</td><td class="price">£270</td></tr>
+    <tr><td>Brussels, 1 night</td><td>ibis off Grand'Place, room €136 plus parking about €18</td><td class="price">about €154</td></tr>
+    <tr><td>Le Roannay, 1 night</td><td>Standard King, breakfast and parking incl. (live)</td><td class="price">€218</td></tr>
+    <tr><td>Adenau studio, 3 nights</td><td>preliminary choice, NOT booked yet</td><td class="price">£497.19</td></tr>
+    <tr class="total"><td colspan="2">Fixed items, grand total</td><td>about £1,085</td></tr>
+  </table>
+  <div class="note warn">On top: laps at about €30 to €35 each, dinners, the Koblenz sushi, food, fuel and tolls. As a rough all in figure for two, budget around <strong>£1,400 to £1,900</strong>.</div>
+
+  <h2><span class="bar"></span>Before you go, the easy to miss bits</h2>
+  <ul style="font-size:14.5px; line-height:1.7; color:#333a45">
+    <li><b>EES biometric border.</b> The EU Entry Exit System is live, so on the way out at Folkestone you give fingerprints and a face scan. Allow extra time. ETIAS is not required until 2027, so nothing to apply for.</li>
+    <li><b>Passport.</b> Issued less than 10 years before you travel and valid at least 3 months after you return.</li>
+    <li><b>Healthcare.</b> Carry a GHIC card, plus travel insurance that covers driving abroad.</li>
+    <li><b>Car kit for the M2.</b> Licence, V5C, insurance certificate, UK sticker, headlamp beam deflectors, warning triangle and hi vis vests. France also requires a breathalyser.</li>
+    <li><b>Low emission zones.</b> Register the M2 for the Brussels LEZ online (free) before driving in, and fit a German Umweltplakette sticker. No motorway vignettes are needed on this route.</li>
+    <li><b>At the ring.</b> Laps are paid by the cashless ring card or the Nürburgring app, so set that up. Check tyres and brakes, and the on site station has the higher octane fuel the M2 likes.</li>
+    <li><b>Book early.</b> The crossing, both hotels and the Airbnb. Reserve the Roannay table. Ventisette and the sushi are walk in. Check the live Nordschleife status on the day.</li>
+  </ul>
+
+  <h2><span class="bar"></span>Book everything here</h2>
+  <table>
+    <tr><th>What</th><th>Detail</th><th>Link</th></tr>
+    <tr><td><b>LeShuttle crossing</b></td><td>Folkestone to Calais. Out Wed 8 Jul 14:16, back Mon 13 Jul 16:24. £270 return.</td><td><a class="btn" href="https://www.leshuttle.com/uk-en/">Book</a></td></tr>
+    <tr><td><b>Brussels hotel</b></td><td>ibis off Grand'Place, 8 Jul. Room €135.60 plus about €18 parking under the hotel.</td><td><a class="btn" href="https://www.booking.com/hotel/be/ibisgrandplace.html?checkin=2026-07-08&checkout=2026-07-09&group_adults=2">Book</a></td></tr>
+    <tr><td><b>Le Roannay room</b></td><td>Francorchamps, 9 Jul. €218 Standard King, breakfast and parking included.</td><td><a class="btn" href="https://ibe.smarthotel.nl/?id=13df709d-d7a2-483e-8447-5df1ed35ea02">Book</a></td></tr>
+    <tr><td><b>Le Roannay dinner</b></td><td>Le Lounge brasserie, Thu 9 Jul, open lunch and dinner.</td><td><a class="btn gold" href="https://roannay.be/en/lounge-brasserie-booking/">Reserve</a></td></tr>
+    <tr><td><b>Adenau studio</b></td><td>Race House Studio, 10 to 13 Jul, £497.19. Preliminary, reserve to confirm.</td><td><a class="btn" href="https://www.airbnb.co.uk/rooms/1480966245238566951?check_in=2026-07-10&check_out=2026-07-13&adults=2">Book</a></td></tr>
+  </table>
+
+  <footer>
+    Hotel and LeShuttle prices are live for these dates, normal car, and move with demand. Restaurant details and travel times are planning estimates, confirm opening hours, especially on a Sunday. Itinerary prepared June 2026.
+  </footer>
+</div>
+<script>
+  document.querySelectorAll('a[href]').forEach(function(a){ a.target = '_blank'; a.rel = 'noopener noreferrer'; });
+</script>
+</body>
+</html>
