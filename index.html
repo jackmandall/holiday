@@ -141,6 +141,59 @@
   </table>
   <div class="note"><a href="https://www.leshuttle.com/uk-en/">Manage booking</a>.</div>
 
+  <h2><span class="bar"></span>The route</h2>
+  <p class="lead">The full loop on the actual roads. Red is the outbound drive, gold is the Saturday hop to Koblenz, blue is the run home via Ghent, and the grey dashes are the Eurotunnel.</p>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+  <div id="routemap" style="height:460px; border:1px solid var(--line); border-radius:14px; overflow:hidden; margin:6px 0; z-index:0"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script>
+  (function(){
+    var stops = [
+      {n:1, name:"Crowthorne", ll:[51.3818,-0.7912], col:"#333"},
+      {n:2, name:"Folkestone — LeShuttle", ll:[51.0942,1.1213], col:"#e2001a"},
+      {n:3, name:"Calais", ll:[50.9223,1.8123], col:"#e2001a"},
+      {n:4, name:"Bruges — Tue night", ll:[51.2093,3.2247], col:"#e2001a"},
+      {n:5, name:"Brussels — Wed night", ll:[50.8468,4.3553], col:"#e2001a"},
+      {n:6, name:"Spa Francorchamps — Thu night", ll:[50.4555,5.9636], col:"#e2001a"},
+      {n:7, name:"Nürburg — base, Fri to Mon", ll:[50.3479,6.9437], col:"#a50d18"},
+      {dot:true, name:"Koblenz — Saturday sushi", ll:[50.3617,7.5969], col:"#e8b21a"},
+      {dot:true, name:"Ghent — lunch on the way home", ll:[51.0536,3.7253], col:"#1a73c2"}
+    ];
+    function init(){
+      var map = L.map('routemap',{scrollWheelZoom:false});
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18, attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
+      stops.forEach(function(s){
+        var html = s.dot
+          ? '<div style="background:'+s.col+';border:2px solid #fff;border-radius:50%;width:16px;height:16px;box-shadow:0 1px 4px rgba(0,0,0,.4)"></div>'
+          : '<div style="background:'+s.col+';color:#fff;border:2px solid #fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font:700 12px sans-serif;box-shadow:0 1px 4px rgba(0,0,0,.4)">'+s.n+'</div>';
+        var sz = s.dot?16:24;
+        L.marker(s.ll,{icon:L.divIcon({className:'', html:html, iconSize:[sz,sz], iconAnchor:[sz/2,sz/2]})}).addTo(map).bindPopup(s.name);
+      });
+      map.fitBounds(L.latLngBounds(stops.map(function(s){return s.ll;})).pad(0.12));
+      L.polyline([stops[1].ll,stops[2].ll],{color:'#888',weight:3,dashArray:'6 8'}).addTo(map); // Channel
+      function draw(seq,color,dash){
+        var path = seq.map(function(s){return s.ll[1]+','+s.ll[0];}).join(';');
+        fetch('https://router.project-osrm.org/route/v1/driving/'+path+'?overview=full&geometries=geojson')
+          .then(function(r){return r.json();})
+          .then(function(d){
+            if(d && d.routes && d.routes[0]){
+              var line = d.routes[0].geometry.coordinates.map(function(c){return [c[1],c[0]];});
+              L.polyline(line,{color:color,weight:4,opacity:.85,dashArray:dash||null}).addTo(map);
+            } else { L.polyline(seq.map(function(s){return s.ll;}),{color:color,weight:3,opacity:.55,dashArray:'4 6'}).addTo(map); }
+          })
+          .catch(function(){ L.polyline(seq.map(function(s){return s.ll;}),{color:color,weight:3,opacity:.55,dashArray:'4 6'}).addTo(map); });
+      }
+      draw([stops[0],stops[1]],'#e2001a');                                   // Crowthorne to Folkestone
+      draw([stops[2],stops[3],stops[4],stops[5],stops[6]],'#e2001a');        // Calais to Nürburg via Bruges, Brussels, Spa
+      draw([stops[6],stops[7]],'#e8b21a','8 8');                             // Nürburg to Koblenz
+      draw([stops[6],stops[8],stops[2]],'#1a73c2');                          // Nürburg to Ghent to Calais
+      setTimeout(function(){ map.invalidateSize(); }, 300);
+    }
+    function ready(){ if(window.L && document.getElementById('routemap')){ init(); } else { setTimeout(ready,150); } }
+    ready();
+  })();
+  </script>
+
   <h2><span class="bar"></span>Opening Times</h2>
   <p class="lead">Touristenfahrten on the Nordschleife. Laps are about €30 to €35 each, paid on the cashless ring card or the app, you cannot pre book.</p>
   <table>
